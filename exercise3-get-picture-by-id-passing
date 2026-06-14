@@ -1,0 +1,166 @@
+============================= test session starts ==============================
+collecting ... collected 11 items
+
+tests/test_api.py::test_health PASSED
+tests/test_api.py::test_count PASSED
+tests/test_api.py::test_data_contains_10_pictures PASSED
+tests/test_api.py::test_get_picture PASSED
+tests/test_api.py::test_get_pictures_check_content_type_equals_json PASSED
+tests/test_api.py::test_get_picture_by_id PASSED
+tests/test_api.py::test_pictures_json_is_not_empty PASSED
+tests/test_api.py::test_post_picture 
+-------------------------------- live log call ---------------------------------
+ERROR    backend:app.py:1455 Exception on /picture [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1701, in make_response
+    raise TypeError(
+TypeError: The view function for 'create_picture' did not return a valid response. The function either returned None or ended without a return statement.
+FAILED
+tests/test_api.py::test_post_picture_duplicate 
+-------------------------------- live log call ---------------------------------
+ERROR    backend:app.py:1455 Exception on /picture [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1701, in make_response
+    raise TypeError(
+TypeError: The view function for 'create_picture' did not return a valid response. The function either returned None or ended without a return statement.
+FAILED
+tests/test_api.py::test_update_picture_by_id 
+-------------------------------- live log call ---------------------------------
+ERROR    backend:app.py:1455 Exception on /picture/2 [PUT]
+Traceback (most recent call last):
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1701, in make_response
+    raise TypeError(
+TypeError: The view function for 'update_picture' did not return a valid response. The function either returned None or ended without a return statement.
+FAILED
+tests/test_api.py::test_delete_picture_by_id FAILED
+
+=================================== FAILURES ===================================
+______________________________ test_post_picture _______________________________
+
+picture = {'id': 200, 'pic_url': 'http://dummyimage.com/230x100.png/dddddd/000000', 'event_country': 'United States', 'event_state': 'California', ...}
+client = <FlaskClient <Flask 'backend'>>
+
+    def test_post_picture(picture, client):
+        # create a brand new picture to upload
+        res = client.post("/picture", data=json.dumps(picture),
+                          content_type="application/json")
+>       assert res.status_code == 201
+E       assert 500 == 201
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests/test_api.py:49: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    backend:app.py:1455 Exception on /picture [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1701, in make_response
+    raise TypeError(
+TypeError: The view function for 'create_picture' did not return a valid response. The function either returned None or ended without a return statement.
+_________________________ test_post_picture_duplicate __________________________
+
+picture = {'id': 200, 'pic_url': 'http://dummyimage.com/230x100.png/dddddd/000000', 'event_country': 'United States', 'event_state': 'California', ...}
+client = <FlaskClient <Flask 'backend'>>
+
+    def test_post_picture_duplicate(picture, client):
+        # create a brand new picture to upload
+        res = client.post("/picture", data=json.dumps(picture),
+                          content_type="application/json")
+>       assert res.status_code == 302
+E       assert 500 == 302
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests/test_api.py:59: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    backend:app.py:1455 Exception on /picture [POST]
+Traceback (most recent call last):
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1701, in make_response
+    raise TypeError(
+TypeError: The view function for 'create_picture' did not return a valid response. The function either returned None or ended without a return statement.
+__________________________ test_update_picture_by_id ___________________________
+
+client = <FlaskClient <Flask 'backend'>>
+picture = {'id': 200, 'pic_url': 'http://dummyimage.com/230x100.png/dddddd/000000', 'event_country': 'United States', 'event_state': 'California', ...}
+
+    def test_update_picture_by_id(client, picture):
+        id = '2'
+        res = client.get(f'/picture/{id}')
+        res_picture = res.json
+        assert res_picture['id'] == 2
+        res_state = res_picture["event_state"]
+        new_state = "*" + res_state
+        res_picture["event_state"] = new_state
+        res = client.put(f'/picture/{id}', data=json.dumps(res_picture),
+                         content_type="application/json")
+        res.status_code == 200
+        res = client.get(f'/picture/{id}')
+>       assert res.json['event_state'] == new_state
+E       AssertionError: assert 'Florida' == '*Florida'
+E         
+E         - *Florida
+E         ? -
+E         + Florida
+
+tests/test_api.py:74: AssertionError
+------------------------------ Captured log call -------------------------------
+ERROR    backend:app.py:1455 Exception on /picture/2 [PUT]
+Traceback (most recent call last):
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1526, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1545, in finalize_request
+    response = self.make_response(rv)
+  File "/mnt/c/Users/RUSHIKESH/Desktop/Back-End-Development-Pictures/venv/lib/python3.10/site-packages/flask/app.py", line 1701, in make_response
+    raise TypeError(
+TypeError: The view function for 'update_picture' did not return a valid response. The function either returned None or ended without a return statement.
+__________________________ test_delete_picture_by_id ___________________________
+
+client = <FlaskClient <Flask 'backend'>>
+
+    def test_delete_picture_by_id(client):
+        res = client.get("/count")
+>       assert res.json['length'] == 11
+E       assert 10 == 11
+
+tests/test_api.py:78: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_api.py::test_post_picture - assert 500 == 201
+ +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+FAILED tests/test_api.py::test_post_picture_duplicate - assert 500 == 302
+ +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+FAILED tests/test_api.py::test_update_picture_by_id - AssertionError: assert 'Florida' == '*Florida'
+  
+  - *Florida
+  ? -
+  + Florida
+FAILED tests/test_api.py::test_delete_picture_by_id - assert 10 == 11
+========================= 4 failed, 7 passed in 6.89s ==========================
